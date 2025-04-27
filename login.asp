@@ -1,20 +1,20 @@
 <%
-LHB_GongHao=request("LHB_GongHao")  '接受管理员用户名
-LHB_MiMa=request("LHB_MiMa")  '接受管理员密码
+LHB_GongHao=request("LHB_GongHao")  'ユーザー名前の検証
+LHB_MiMa=request("LHB_MiMa")  'パスワードの検証
 keys=request("keys")
 %> 
 <!--#include file="config.asp"-->
 <%
 if LHB_GongHao<>"" and LHB_MiMa<>"" then
-set Lours=Louconn.execute("select * from LHB_USER_DATA where LHB_GongHao='"& LHB_GongHao & "'")				'判断是否存在该用户
+set Lours=Louconn.execute("select * from LHB_USER_DATA where LHB_GongHao='"& LHB_GongHao & "'")				'ユーザーが存在するかどうか
 if not (Lours.bof and Lours.eof) then
 if Lours("LHB_MiMa")=LHB_MiMa then
 session("LHB_MiMa")=Lours("LHB_MiMa")           	
-session("LHB_GongHao")=Lours("LHB_GongHao")		'为真则将该用户的该权限放入SESSION中
+session("LHB_GongHao")=Lours("LHB_GongHao")		'数値が真でもSESSIONに入れる
 session("LHB_XingMing")=Lours("LHB_XingMing")	
 session("LHB_Group")=Lours("LHB_Group")
 
-Response.Redirect "index.asp"							'跳转到管理员管理页面
+Response.Redirect "index.asp"							'管理者へのページの切り替え
 End if
 else
 cwxx=1
@@ -43,7 +43,7 @@ end if
 <td colspan="2">
 <%
 if cwxx=1 then 
-Response.Write "<p class=p2>老大，想黑我，密码错了！</p>"
+Response.Write "<p class=p2>パスワードエラー！</p>"
 end if
 %>
 </td>
