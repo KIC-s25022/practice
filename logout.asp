@@ -1,0 +1,10 @@
+<%
+session.abandon
+session("LHB_GongHao")=""
+session("LHB_MiMa")=""
+session("LHB_XingMing")=""
+session("LHB_group")=""
+session("L_GuangLiQX")=""
+session("LHB_KeShiBM")=""
+%>
+<script>top.location.href="index.asp";</script>
